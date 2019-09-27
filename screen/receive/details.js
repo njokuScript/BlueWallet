@@ -30,13 +30,11 @@ export default class ReceiveDetails extends Component {
 
   constructor(props) {
     super(props);
-    let address = props.navigation.state.params.address || '';
     let secret = props.navigation.state.params.secret || '';
 
     this.state = {
-      address: address,
       secret: secret,
-      addressText: address,
+      addressText: '',
       bip21encoded: undefined,
     };
   }
@@ -47,13 +45,11 @@ export default class ReceiveDetails extends Component {
     await SystemSetting.setAppBrightness(1.0);
     console.log('receive/details - componentDidMount');
 
-    /**  @type {AbstractWallet}   */
-    let address = this.state.address;
-
-    if (address.trim().length === 0) {
+    {
+      let address;
       let wallet;
       for (let w of BlueApp.getWallets()) {
-        if ((address && w.getAddress() === this.state.address) || w.getSecret() === this.state.secret) {
+        if (w.getSecret() === this.state.secret) {
           // found our wallet
           wallet = w;
         }
@@ -94,13 +90,8 @@ export default class ReceiveDetails extends Component {
           });
         } else if (wallet.getAddress) {
           this.setState({
-            address: address,
-            addressText: address,
-          });
-        } else {
-          this.setState({
-            address,
-            addressText: address,
+            address: wallet.getAddress(),
+            addressText: wallet.getAddress(),
           });
         }
       }
@@ -187,7 +178,6 @@ ReceiveDetails.propTypes = {
     navigate: PropTypes.func,
     state: PropTypes.shape({
       params: PropTypes.shape({
-        address: PropTypes.string,
         secret: PropTypes.string,
       }),
     }),

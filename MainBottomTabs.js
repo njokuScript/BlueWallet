@@ -39,6 +39,7 @@ import sendDetails from './screen/send/details';
 import ScanQRCode from './screen/send/scanQrAddress';
 import sendCreate from './screen/send/create';
 import Confirm from './screen/send/confirm';
+import PsbtWithHardwareWallet from './screen/send/psbtWithHardwareWallet';
 import Success from './screen/send/success';
 
 import ScanLndInvoice from './screen/lnd/scanLndInvoice';
@@ -150,6 +151,9 @@ const CreateTransactionStackNavigator = createStackNavigator({
   },
   Confirm: {
     screen: Confirm,
+  },
+  PsbtWithHardwareWallet: {
+    screen: PsbtWithHardwareWallet,
   },
   CreateTransaction: {
     screen: sendCreate,
