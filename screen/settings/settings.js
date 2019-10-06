@@ -28,7 +28,7 @@ export default class Settings extends Component {
   }
 
   async componentDidMount() {
-    let advancedModeEnabled = !!(await AsyncStorage.getItem(AppStorage.ADVANCED_MODE_ENABLED));
+    const advancedModeEnabled = !!(await AsyncStorage.getItem(AppStorage.ADVANCED_MODE_ENABLED));
     this.setState({
       isLoading: false,
       advancedModeEnabled,
@@ -53,6 +53,11 @@ export default class Settings extends Component {
       <SafeBlueArea forceInset={{ horizontal: 'always' }} style={{ flex: 1 }}>
         <BlueHeaderDefaultSub leftText={loc.settings.header} rightComponent={null} />
         <ScrollView maxHeight={450}>
+          <BlueListItem
+            component={TouchableOpacity}
+            title="Notifications"
+            onPress={() => this.props.navigation.navigate('SettingsNotifications')}
+          />
           <TouchableOpacity onPress={() => this.props.navigation.navigate('EncryptStorage')}>
             <BlueListItem title={loc.settings.encrypt_storage} />
           </TouchableOpacity>
