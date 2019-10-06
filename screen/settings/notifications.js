@@ -39,7 +39,9 @@ export default class SettingsNotifications extends Component {
           <BlueCard>
             <BlueText>By enabling, you authorize us to send you notifications of:</BlueText>
             <BlueSpacing20 />
-            <BlueText> - Bitcoin price fluctuation</BlueText>
+            <BlueText> • BlueWallet News</BlueText>
+            <BlueSpacing20 />
+            <BlueText> • Bitcoin price fluctuation</BlueText>
           </BlueCard>
         </View>
       </SafeBlueArea>
